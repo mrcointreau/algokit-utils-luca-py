@@ -42,7 +42,6 @@ dev = [
   "pydoclint>=0.6.0,<0.9",
   "pytest-sugar>=1.0.0,<2",
   "types-deprecated>=1.2.15.20241117,<2",
-  "sphinx-autobuild>=2024.10.3,<2025",
   "furo>=2024.8.6,<2026",
   "myst-parser>=4.0.0,<5",
   "sphinx-autoapi>=3.4.0,<4",
