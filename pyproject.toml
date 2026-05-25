@@ -290,10 +290,6 @@ sequence = [
 ]
 help = "Preview current and next prerelease version"
 
-[tool.poe.tasks.release-dry-run-alpha]
-shell = "semantic-release --noop version --as-prerelease --prerelease-token alpha"
-help = "Dry-run alpha release (no changes made)"
-
 [tool.poe.tasks.release-dry-run-beta]
 shell = "semantic-release --noop version --as-prerelease --prerelease-token beta"
 help = "Dry-run beta release (no changes made)"
@@ -361,11 +357,6 @@ tag_format = "v{version}"
 match = "main"
 prerelease_token = "beta"
 prerelease = false
-
-[tool.semantic_release.branches.alpha]
-match = "alpha"
-prerelease_token = "alpha"
-prerelease = true
 
 [tool.semantic_release.commit_parser_options]
 allowed_tags = [
