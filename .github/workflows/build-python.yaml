@@ -24,6 +24,8 @@ jobs:
 
       - name: Setup Polytest
         uses: algorandfoundation/algokit-polytest/.github/actions/setup-polytest@main
+        with:
+          version: "^0.7"
 
       - name: Generate all polytest files
         shell: bash
