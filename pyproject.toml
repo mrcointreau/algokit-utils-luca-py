@@ -1,5 +1,5 @@
 [project]
-name = "algokit-utils"
+name = "algokit-utils-luca-py"
 version = "4.2.3"
 description = "Utilities for Algorand development for use by AlgoKit"
 authors = [
@@ -10,6 +10,7 @@ readme = "README.md"
 requires-python = ">=3.10,<4"
 dependencies = [
   "py-algorand-sdk>=2.11.0,<3",
+  "msgpack>=1.2.1,<2",       # pin transitive (via py-algorand-sdk) off GHSA-6v7p-g79w-8964
   "httpx>=0.23.1,<=0.28.1",
   "typing-extensions>=4.6.0",
 ]
@@ -45,6 +46,11 @@ dev = [
 [build-system]
 requires = ["uv_build>=0.9.5,<0.12"]
 build-backend = "uv_build"
+
+[tool.uv.build-backend]
+# Distribution renamed to algokit-utils-luca-py for the Test PyPI sandbox;
+# keep the importable module as the original algokit_utils.
+module-name = "algokit_utils"
 
 [tool.ruff]
 line-length = 120
