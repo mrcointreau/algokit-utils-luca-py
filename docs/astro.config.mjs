@@ -6,8 +6,8 @@ import sidebar from "./sidebar.config.json";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://algorandfoundation.github.io",
-  base: "/algokit-utils-py/",
+  site: "https://mrcointreau.github.io",
+  base: "/algokit-utils-luca-py/",
   trailingSlash: "always",
   markdown: {
     remarkPlugins: [remarkGithubAlerts],
