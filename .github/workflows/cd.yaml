@@ -37,7 +37,6 @@ jobs:
   # NOTE: sandbox version of upstream cd.yaml:
   #   * uses a personal GitHub App (BOT_ID/BOT_SK) to mirror upstream's release identity
   #   * PyPI -> Test PyPI via OIDC trusted publishing
-  #   * deploy-docs job removed (GitHub Pages needs a public/paid repo)
   release:
     name: Release Library
     needs: ci-build-python
@@ -100,3 +99,34 @@ jobs:
         with:
           repository-url: https://test.pypi.org/legacy/
           verbose: true
+
+  deploy-docs:
+    name: Deploy Documentation
+    needs: ci-build-python
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    concurrency:
+      group: deploy-docs
+      cancel-in-progress: true
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+
+      - name: Build documentation
+        uses: ./.github/actions/publish-docs
+
+      - name: Upload to GitHub Pages
+        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5
+        with:
+          path: docs/dist
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@cd2ce8fcbc39b97be8ca5fce6e763baed58fa128 # v5
