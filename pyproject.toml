@@ -190,7 +190,7 @@ disable_error_code = ["call-overload", "union-attr"]
 version_toml = ["pyproject.toml:project.version"]
 build_command = "uv build"
 major_on_zero = true
-commit_message = "{version} [skip ci]\n\nskip-checks: true"
+commit_message = "{version}\n\nskip-checks: true"
 tag_format = "v{version}"
 
 [tool.semantic_release.branches.main]
