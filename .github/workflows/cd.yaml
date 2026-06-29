@@ -80,7 +80,7 @@ jobs:
           GH_TOKEN: ${{ steps.app_token.outputs.token }}
         run: |
           uv run semantic-release -v version --as-prerelease
-          uv run semantic-release publish
+          uv run semantic-release publish --tag "$(git describe --tags --abbrev=0)"
 
       - name: Create Continuous Deployment - Production
         id: release-prod
@@ -89,7 +89,7 @@ jobs:
           GH_TOKEN: ${{ steps.app_token.outputs.token }}
         run: |
           uv run semantic-release -v version
-          uv run semantic-release publish
+          uv run semantic-release publish --tag "$(git describe --tags --abbrev=0)"
 
       - name: Publish package distributions to Test PyPI
         if: |
